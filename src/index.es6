@@ -1,5 +1,13 @@
 import TreeNode from './tree-node';
 
+// Build out a tree:
+//
+//        1A
+//      /    \
+//    2A     2B
+//   /
+// 3A
+
 let tree = TreeNode.create(
   '1A',
   TreeNode.create(
