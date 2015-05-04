@@ -7,6 +7,15 @@ import Symbol from 'symbol';
 const SEARCH_BREAK = Symbol();
 
 /**
+ * Shorthand for determining whether the current search is done.
+ * @param {Symbol|undefined} retVal Return value from the search callback
+ * @returns {boolean} Is the search complete?
+ */
+function isSearchDone(retVal) {
+  return retVal === SEARCH_BREAK;
+}
+
+/**
  * A node in a tree.
  */
 export default class TreeNode {
@@ -25,7 +34,7 @@ export default class TreeNode {
       let node = queue.shift();
       if (node) {
         let { value, children } = node,
-            isDone = TreeNode.isDone(processNode(value));
+            isDone = isSearchDone(processNode(value));
         // Check to see if the node processor is done.
         if (isDone) {
           return;
@@ -42,22 +51,13 @@ export default class TreeNode {
    */
   dfs(processNode) {
     let { value, children } = this,
-        isDone = TreeNode.isDone(processNode(value));
+        isDone = isSearchDone(processNode(value));
     
     if (!isDone && Array.isArray(children)) {
       isDone = children.some(child => child.dfs(processNode));
     }
     
     return isDone;
-  }
-  
-  /**
-   * Shorthand for determining whether the current search is done.
-   * @param {Symbol|undefined| retVal Return value from the search callback
-   * @returns {boolean} Is the search complete?
-   */
-  static isDone(retVal) {
-    return retVal === SEARCH_BREAK;
   }
   
   /**
