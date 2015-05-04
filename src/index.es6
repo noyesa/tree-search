@@ -7,4 +7,4 @@ let tree = TreeNode.create(
     TreeNode.create('3A')),
   TreeNode.create('2B'));
 
-console.dir(tree);
+tree.bfs(v => console.log(v));
