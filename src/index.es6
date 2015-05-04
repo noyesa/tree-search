@@ -17,3 +17,14 @@ tree.bfs(v => {
     return TreeNode.SEARCH_BREAK;
   }
 });
+
+console.log('\nbasic dfs');
+tree.dfs(v => console.log(v));
+
+console.log('\ndfs with break');
+tree.dfs(v => {
+  console.log(v);
+  if (v === '2A') {
+    return TreeNode.SEARCH_BREAK;
+  }
+});

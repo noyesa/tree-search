@@ -37,6 +37,21 @@ export default class TreeNode {
   }
   
   /**
+   * Perform depth-first search on the tree starting at the current node.
+   * @param {function} processNode Callback that processes each node
+   */
+  dfs(processNode) {
+    let { value, children } = this,
+        isDone = TreeNode.isDone(processNode(value));
+    
+    if (!isDone && Array.isArray(children)) {
+      isDone = children.some(child => child.dfs(processNode));
+    }
+    
+    return isDone;
+  }
+  
+  /**
    * Shorthand for determining whether the current search is done.
    * @param {Symbol|undefined| retVal Return value from the search callback
    * @returns {boolean} Is the search complete?
