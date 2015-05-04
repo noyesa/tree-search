@@ -26,6 +26,8 @@ export default class TreeNode {
   
   /**
    * Perform breadth-first search on the tree starting at the current node.
+   * Evaluation terminates after the first time the processNode callback
+   * returns a sentinel value TreeNode.SEARCH_BREAK.
    * @param {function} processNode Callback that processes each node
    */
   bfs(processNode) {
@@ -47,6 +49,8 @@ export default class TreeNode {
   
   /**
    * Perform depth-first search on the tree starting at the current node.
+   * Evaluation terminates after the first time the processNode callback
+   * returns a sentinel value TreeNode.SEARCH_BREAK.
    * @param {function} processNode Callback that processes each node
    */
   dfs(processNode) {
